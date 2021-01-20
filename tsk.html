@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+
+
+    <p id="demo"> </p>
+
+    <script>
+
+        function getData() {
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            fetch(proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt')
+                .then(response => response.text()
+
+                )
+                .then(req => {
+                    var a = req.split('\n');
+                    // console.log(a);
+                    var x = a.map(myfun1);
+                    for (var i = 1; i < x.length - 1; i++) {
+                        fun2(x[i]);
+                    }
+                })
+        }
+        var p = 0,
+            parent = [];
+        function fun2(str) {
+            var c = 0;
+            var x = [];
+            var stri = "";
+            var spll = str.split(' > ');
+            var len = spll.length;
+            for (var k = 0; k < len; k++) {
+                x = spll[k];
+                stri = stri + "";
+            }
+            stri = stri + spll[len - 1];
+            console.log(stri);
+            document.getElementById("demo").innerHTML += "<br>" + stri + " ";
+            for (var t = 1; t < parent.length; t++) {
+                if (parent[t] == spll[0]) {
+                    c = 1;
+                    break;
+                }
+            }
+            if (c == 0) {
+                parent[p] = spll[0];
+                p++;
+            }
+        }
+        function myfun1(a) {
+            return a.split('-')[1];
+        }
+        getData();
+
+
+    </script>
+
+</body>
+
+</html>
